@@ -1,0 +1,163 @@
+<html>
+
+    <head>
+        <title>Cerne</title>
+        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+        <link rel="stylesheet" href="./css/main.css">
+        <script type="application/javascript" src="js/external/jquery.min.js"></script>
+        <script type="application/javascript" src="js/screen/screens.js"></script>
+    </head>
+    <body>
+        <div id="sign-in">
+            <div class="box">
+                <div class="login-header">
+                    <img src="img/logocerne-min.png" class="logo">
+                    <h3>Flashcards em todo lugar!</h3>
+                </div>
+                <div>
+                    <input type="text" placeholder="E-mail" id="user" onchange="SignIn.setUser(this.value)">
+                    <input type="password" placeholder="Senha" id="password" onchange="SignIn.setPassword(this.value)">
+                </div>
+                <div class="button galaxy" id="sign-in-app" onclick="SignIn.signIn()">Entrar</div>
+            </div>
+             <div class="button-text" onclick="Screens.navigate(SignUp)">Ainda não tenho conta</div>
+             <div id="header-gradiente" class="galaxy"></div>
+        </div>
+        <div id="sign-up" class="hide">
+            <div class='back-button' onclick="Screens.navigate(SignIn)">
+                    <img src="img/left-arrow-white.svg">
+            </div>
+            <div class="box">
+                <div class="login-header">
+                    <h3>Cadastre-se e aproveite!</h3>
+                    <img src="img/logocerne-min.png" id="new-user-pic">
+                    <h4>Escolher Foto</h4>
+                </div>
+                <div>
+                    <input type="text" placeholder="Nome" id="new-user-name" onchange="SignUp.setName(this.value)">
+                    <input type="text" placeholder="E-mail" id="new-user-user" onchange="SignUp.setUser(this.value)">
+                    <input type="password" placeholder="Senha" id="new-user-password" onchange="SignUp.setPassword(this.value)">
+                    <input type="password" placeholder="Confirmar Senha" id="new-user-password-confirmation" onchange="SignUp.setPassword(this.value)">
+                </div>
+                <div class="button galaxy" id="sign-up-app">Cadastrar</div>
+            </div>
+             <div id="header-gradiente" class="galaxy"></div>
+        </div>
+        <div id="on-boarding"></div>
+        <div id="home" class="hide">
+            <div class="blured-image-container">
+                <div id="blured-image"></div>
+            </div>
+            <div id="action-bar">
+                <div class="logo">
+                    <h1>CERNE</h1>
+                </div>
+                <div class="buttons">
+                    <img src="img/settings.svg" onclick="Screens.navigate(Settings)">
+                </div>
+            </div>
+            <div id="header">
+                <div class="profile-pic"></div>
+                <div class="profile-bio">
+                    <h2 id="user-name"></h2>
+                    <h3 id="user-decks-number"></h3>
+                </div>
+            </div>
+            <ul id="list-selector">
+                <li id="collection-nav" class="selected">Coleção</li>
+                <li id="store-nav">Loja</li>
+            </ul>
+            <div id="new-deck">
+                <svg id="plus" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 491.86 491.86" style="enable-background:new 0 0 491.86 491.86;" xml:space="preserve" width="512px" height="512px">
+                    <path d="M465.167,211.614H280.245V26.691c0-8.424-11.439-26.69-34.316-26.69s-34.316,18.267-34.316,26.69v184.924H26.69    C18.267,211.614,0,223.053,0,245.929s18.267,34.316,26.69,34.316h184.924v184.924c0,8.422,11.438,26.69,34.316,26.69    s34.316-18.268,34.316-26.69V280.245H465.17c8.422,0,26.69-11.438,26.69-34.316S473.59,211.614,465.167,211.614z" fill="#FFFFFF"/>
+                </svg>
+            </div>
+            <div id="collection">
+                <ul class="deck-container">
+                    <li class="deck-category">
+                    </li>
+                </ul>
+            </div>
+            <div id="store" class="hide">
+                <ul class="deck-container">
+                    <li class="deck-category">
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="deck-creator" class='hide'>
+            <div class="header">
+                <div class='back-button' onclick="Screens.navigate(Home)">
+                    <img src="img/left-arrow.svg">
+                </div>
+                <h3>Novo Deck</h3>
+            </div>
+            <h1>Nome do Deck</h1>
+            <input type="text" placeholder="Digite o nome do deck..." id="new-deck-name">
+            <h1>Categoria</h1>
+            <ul id="category-selector">
+            </ul>
+            <div class="button galaxy" id="create-deck">COMEÇAR</div>
+        </div>
+        <div id="card-creator" class="hide">
+            <div class="row">
+                <div id="font-style">
+                    <p>Aa</p>
+                </div>
+                <div id="font-size">
+                    <div id="font-size-circle"></div>
+                    <div id="font-size-bar"></div>
+                </div>
+            </div>
+            <ul id="font-color">
+                    <li class="red"></li>
+                    <li class="orange"></li>
+                    <li class="yellow"></li>
+                    <li class="green"></li>
+                    <li class="blue"></li>
+                    <li class="purple"></li>
+                    <li class="pink"></li>
+                    <li class="black"></li>
+                </ul>
+            <div class="card creator" id="flashcard-creator">
+                <div id="flashcard-creator-flip"></div>
+                <p id="card-text">Clique para escrever</p>
+                <input type="text" id="card-input" placeholder="Clique para escrever">
+            </div>
+            <div class="actions">
+                <div id="add-card" class="button galaxy">ADICIONAR</div>
+                <div id="fin-deck" class="button galaxy">FINALIZAR</div>
+            </div>
+        </div>
+        <div id="cards-preview">
+            <ul id="cards-list">
+            </ul>
+        </div>
+        <div id="settings" class='hide'>
+            <div class="header">
+                <div class='back-button' onclick="Screens.navigate(Home)">
+                    <img src="img/left-arrow.svg">
+                </div>
+                <h3>Configurações</h3>
+            </div>
+            <div class="flex-1">
+                <div class="row-between">
+                <h1>Modo Noturno</h1>
+                <img id="dark-mode" src="img/moon-off.svg"/>
+                </div>
+                <h1>Nome</h1>
+                <input type="text" placeholder="Digite o nome..." id="new-user-name">
+                <h1>Nova senha</h1>
+                <input type="text" placeholder="Digite a nova senha..." id="new-user-password">
+                <h1>Confirmar senha</h1>
+                <input type="text" placeholder="Digite novamente a senha..." id="new-user-password">
+            </div>
+            <div class="button galaxy" id="create-deck">Salvar</div>
+        </div>
+    </body>
+    <script src="js/external/mo.min.js"></script>
+    <script src="js/components/animation.js"></script>
+    <script type="application/javascript" src="js/components/components.js"></script>
+    <script type="application/javascript" src="js/components/behavior.js"></script>
+</html>
