@@ -4,6 +4,12 @@
         <title>Cerne</title>
         <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
         <link rel="stylesheet" href="./css/main.css">
+        <script src="cordova.js"></script>
+        <script src="js/firebase/firebase.js"></script>
+        <script src="js/firebase/firebaseConnection.js"></script>
+        <script src="js/firebase/storage.js" type="text/javascript"></script>
+        <script src="js/camera/camera.js" type="text/javascript"></script>
+        <script src="js/dialogs/dialogs.js" type="text/javascript"></script>
         <script type="application/javascript" src="js/external/jquery.min.js"></script>
         <script type="application/javascript" src="js/screen/screens.js"></script>
     </head>
@@ -15,7 +21,7 @@
                     <h3>Flashcards em todo lugar!</h3>
                 </div>
                 <div>
-                    <input type="text" placeholder="E-mail" id="user" onchange="SignIn.setUser(this.value)">
+                    <input type="text" placeholder="E-mail" id="user" onchange="SignIn.setEmail(this.value)">
                     <input type="password" placeholder="Senha" id="password" onchange="SignIn.setPassword(this.value)">
                 </div>
                 <div class="button galaxy" id="sign-in-app" onclick="SignIn.signIn()">Entrar</div>
@@ -30,16 +36,16 @@
             <div class="box">
                 <div class="login-header">
                     <h3>Cadastre-se e aproveite!</h3>
-                    <img src="img/logocerne-min.png" id="new-user-pic">
+                    <img src="img/logocerne.png" id="new-user-pic"/>
                     <h4>Escolher Foto</h4>
                 </div>
                 <div>
                     <input type="text" placeholder="Nome" id="new-user-name" onchange="SignUp.setName(this.value)">
-                    <input type="text" placeholder="E-mail" id="new-user-user" onchange="SignUp.setUser(this.value)">
+                    <input type="text" placeholder="E-mail" id="new-user-user" onchange="SignUp.setEmail(this.value)">
                     <input type="password" placeholder="Senha" id="new-user-password" onchange="SignUp.setPassword(this.value)">
-                    <input type="password" placeholder="Confirmar Senha" id="new-user-password-confirmation" onchange="SignUp.setPassword(this.value)">
+                    <input type="password" placeholder="Confirmar Senha" id="new-user-password-confirmation" onchange="SignUp.setConfirmPassword(this.value)">
                 </div>
-                <div class="button galaxy" id="sign-up-app">Cadastrar</div>
+                <div class="button galaxy" onclick="SignUp.signUp()" id="sign-up-app">Cadastrar</div>
             </div>
              <div id="header-gradiente" class="galaxy"></div>
         </div>

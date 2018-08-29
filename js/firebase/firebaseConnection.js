@@ -39,8 +39,8 @@ function updateFirebase(path, value)
 */
 function writeFirebase(path, value)
 {
-    database.ref(path).set(value.toJSON());
-    console.log(value.toJSON());
+    database.ref(path).set(value);
+    console.log(value);
 }
 
 /*
