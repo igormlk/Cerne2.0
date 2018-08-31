@@ -205,16 +205,20 @@ const Study = {
         $('#' + this.id).removeClass('hide')
     },
     render(){
+        CardScroll.setCards(this.state.deck.cards)
         $('#study-deck-name').text(this.state.deck.title)
     },
     addCard(card){
 
     },
+    setDeck(deck){
+        this.state.deck = deck
+    },
     setDeckTitle(title){
         this.state.deck.title = title
     },
-    startStudy(name){
-        this.setDeckTitle(name)
+    startStudy(id){
+        this.setDeck(Home.getDeck(id))
         Screens.navigate(this)
     }
 }
@@ -253,6 +257,9 @@ const Home = {
         this.state.userDecks.push(deck)
         $('#user-decks-number').text(this.state.userDecks.length)
         $('#' + deck.category.id).find('ul').append(deck.getHtml())
+    },
+    getDeck(id){
+        return this.state.userDecks.filter((x)=>x.id == id)[0]
     },
     setUserName(name){
         this.state.userName = name

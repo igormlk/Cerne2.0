@@ -84,7 +84,7 @@ class Deck {
     }
 
     getHtml(){
-       return ('<li class="deck" id="'+this.id+'" onClick=(Study.startStudy("Teste"))><h1>'+this.title+'</h1><div class="info"><h2>'+this.cards.length+'</h2></div></li>')
+       return ('<li class="deck" id="'+this.id+'" onClick=(Study.startStudy(this.id))><h1>'+this.title+'</h1><div class="info"><h2>'+this.cards.length+'</h2></div></li>')
     }
 
     setId(id){this.id=id}
@@ -336,9 +336,18 @@ const DarkMode = {
 
 const CardScroll = {
     field :'#card-scroll',
+    fieldList: '#card-scroll ul',
     fieldCards: '#card-scroll ul li',
+    cardsNumber: 5,
     state: {
-        sequence: [4,3,2,1]
+        cards: [],
+    },
+    iniciate(){
+        let c = new Card('blank', new CardSide, new CardSide)
+        let i;
+        for (i = 0; i < this.cardsNumber; i++) {
+            $(this.fieldList).append(this.getCardHtml(c))
+        }
     },
     pushLeft(){
         $(this.field).removeClass('forgot')
@@ -350,5 +359,12 @@ const CardScroll = {
     },
     animate(){
         $(this.fieldCards + ":nth-child(5)" ).insertBefore( $(this.fieldCards + ":nth-child(1)"));
+    },
+    setCards(cards){
+        this.state.cards = cards
+        this.iniciate()
+    },
+    getCardHtml(card){
+        return '<li><div class="flip"><h1 class="front card">'+card.front.text+'</h1><h1 class="back card">'+card.back.text+'</h1></div></li>'
     }
 }

@@ -684,7 +684,7 @@ input{
     position: absolute;
     height: 100%;
     width: 100%;
-    transition: 1s;
+    transition: 0.5s;
     border-radius: 10px;
     max-width: 500px;
 }
@@ -703,7 +703,6 @@ input{
 }
 
 .flip > h1 {
-
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     position: absolute;
     height: 100%;
@@ -720,7 +719,7 @@ input{
 #card-scroll ul li:nth-child(1){
     transform: translateY(-59px) translateX(0) scale(0.5);
     opacity: 0;
-    color: transparent
+    color: transparent;
 }
 #card-scroll ul li:nth-child(2){
     transform: translateY(-40px) scale(0.8);
