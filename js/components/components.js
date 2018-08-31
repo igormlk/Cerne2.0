@@ -333,3 +333,22 @@ const DarkMode = {
         darkModeAnimation.replay()
     }
 }
+
+const CardScroll = {
+    field :'#card-scroll',
+    fieldCards: '#card-scroll ul li',
+    state: {
+        sequence: [4,3,2,1]
+    },
+    pushLeft(){
+        $(this.field).removeClass('forgot')
+        this.animate()
+    },
+    pushRight(){
+        $(this.field).addClass('forgot')
+        this.animate()
+    },
+    animate(){
+        $(this.fieldCards + ":nth-child(5)" ).insertBefore( $(this.fieldCards + ":nth-child(1)"));
+    }
+}
