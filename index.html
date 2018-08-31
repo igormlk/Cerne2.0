@@ -153,13 +153,13 @@
                 <img id="dark-mode" src="img/moon-off.svg"/>
                 </div>
                 <h1>Nome</h1>
-                <input type="text" placeholder="Digite o nome..." id="new-user-name">
+                <input type="text" placeholder="Digite o nome..." id="new-user-name-settings" onchange="Settings.setName(this.value)">
                 <h1>Nova senha</h1>
-                <input type="text" placeholder="Digite a nova senha..." id="new-user-password">
+                <input type="password" placeholder="Digite a nova senha..." id="new-user-password-settings" onchange="Settings.setPassword(this.value)">
                 <h1>Confirmar senha</h1>
-                <input type="text" placeholder="Digite novamente a senha..." id="new-user-password">
+                <input type="password" placeholder="Digite novamente a senha..." id="new-user-password-confirmation-settings" onchange="Settings.setConfirmPassword(this.value)">
             </div>
-            <div class="button galaxy" id="create-deck">Salvar</div>
+            <div class="button galaxy" id="create-deck" onclick="Settings.save()">Salvar</div>
         </div>
     </body>
     <script src="js/external/mo.min.js"></script>

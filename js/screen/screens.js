@@ -73,19 +73,22 @@ const SignIn = {
         this.state.password = password
     },
     setId(id){
-        this.state.id = id;
+        this.state.id = id
     },
     getId(){
-        return this.state.id;
+        return this.state.id
     },
     setState(state){
-        this.state = state;
+        this.state = state
     },
     getState(){
         return this.state;
     },
     getName(){
-        return this.state.name;
+        return this.state.name
+    },
+    setName(name){
+        this.state.name = name
     },
     logoutUser(){
         firebase.auth().signOut().then(function() {
@@ -243,6 +246,7 @@ const Home = {
     addDeck(deck){
         this.addCategory(new Category(deck.category.id, deck.category.title, deck.list))
         this.state.userDecks.push(deck)
+        $('#user-decks-number').text(this.state.userDecks.length)
         $('#' + deck.category.id).find('ul').append(deck.getHtml())
     },
     setUserName(name){
@@ -289,12 +293,45 @@ const CardCreator = {
 const Settings = {
     id: 'settings',
     state:{
+        name:'',
+        password:'',
+        confirmPass:''
     },
     show(){
         $('#' + this.id).removeClass('hide')
     },
     render(){
+        $('#new-user-name-settings').text('')
+        $('#new-user-password-settings').text('')
+        $('#new-user-password-confirmation-settings').text('')
+    },
+    save(){
+        if(this.state.password != this.state.confirmPass){
+            console.log("As Senhas não correspondem")
+            toastShowMessageLongBottom("As senhas não correspondem")
+            return;
+        }
+
+        let user = SignIn.getState()
+        user.name = this.state.name
+        user.password = this.state.password
+        user.password_confirm = this.state.confirmPass
+        firebase.auth().currentUser.updatePassword(this.state.password)
+        updateFirebase("/users/" + user.id, user);
+        toastShowMessageLongBottom("Alterações feitas com sucesso")
+        Home.setUserName(user.name)
+        Screens.navigate(Home)
+    },
+    setName(name){
+        this.state.name = name
+    },
+    setPassword(password){
+        this.state.password = password
+    },
+    setConfirmPassword(password){
+        this.state.confirmPass = password;
     }
+
 }
 
 $(document).ready(function(){

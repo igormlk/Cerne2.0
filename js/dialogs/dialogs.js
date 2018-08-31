@@ -20,20 +20,20 @@ function showMessageConfirmDialog(message, confirmCallBack, titulo, buttonLabels
 
 
 function toastShowMessageShortTop(message){
-    window.plugins.toast.showShortTop(message);
+    //window.plugins.toast.showShortTop(message);
 }
 function toastShowMessageShortCenter(message){
-    window.plugins.toast.showShortCenter(message);
+    //window.plugins.toast.showShortCenter(message);
 }
 function toastShowMessageShortBottom(message){
-    window.plugins.toast.showShortBottom(message);
+    //window.plugins.toast.showShortBottom(message);
 }
 function toastShowMessageLongTop(message){
-    window.plugins.toast.showLongTop(message);
+    //window.plugins.toast.showLongTop(message);
 }
 function toastShowMessageLongCenter(message){
-    window.plugins.toast.showLongCenter(message);
+    //window.plugins.toast.showLongCenter(message);
 }
 function toastShowMessageLongBottom(message){
-    window.plugins.toast.showLongBottom(message);
+    //window.plugins.toast.showLongBottom(message);
 }
