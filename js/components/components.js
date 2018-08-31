@@ -1,8 +1,9 @@
 class Card{
-    constructor(id,front,back){
+    constructor(id,front,back, score = 1){
         this.id = id
         this.front = front
         this.back = back
+        this.score = score
     }
     getHtml(){
         return '<li id='+this.id+'>'+this.front+'</li>'
@@ -10,9 +11,12 @@ class Card{
     setId(id){this.id=id}
     setFront(front){this.front=front}
     setBack(back){this.back=back}
+    setScore(score){this.score = score}
     getId(){return this.id}
     getFront(){return this.front}
     getBack(){return this.back}
+    getScore(){return this.score}
+
 }
 
 class CardSide{
