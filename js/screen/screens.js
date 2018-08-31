@@ -205,10 +205,17 @@ const Study = {
         $('#' + this.id).removeClass('hide')
     },
     render(){
-
+        $('#study-deck-name').text(this.state.deck.title)
     },
     addCard(card){
 
+    },
+    setDeckTitle(title){
+        this.state.deck.title = title
+    },
+    startStudy(name){
+        this.setDeckTitle(name)
+        Screens.navigate(this)
     }
 }
 

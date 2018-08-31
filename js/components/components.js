@@ -84,7 +84,7 @@ class Deck {
     }
 
     getHtml(){
-       return ('<li class="deck" id="'+this.id+'"><h1>'+this.title+'</h1><div class="info"><h2>'+this.cards.length+'</h2></div></li>')
+       return ('<li class="deck" id="'+this.id+'" onClick=(Study.startStudy("Teste"))><h1>'+this.title+'</h1><div class="info"><h2>'+this.cards.length+'</h2></div></li>')
     }
 
     setId(id){this.id=id}
