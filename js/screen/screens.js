@@ -18,7 +18,8 @@ const SignIn = {
         email:'',
         password:'',
         password_confirm:'',
-        photo:'img/logocerne-min.png'
+        photo:'img/logocerne-min.png',
+        decks: []
     },
     show(){
         $('#' + this.id).removeClass('hide')
@@ -37,13 +38,22 @@ const SignIn = {
         //Home.setUserAvatar(caminho da imagem)
         //Home.serUserDecks(array de objetos Deck)
 
-        firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password).
+        firebase.auth().signInWithEmailAndPassword(this.state.email.trim(),this.state.password).
         then(function(user){
             SignIn.setId(user.user.uid);
             readFirebase("/users/"+SignIn.getId(), function(snapshot){
                 SignIn.setState(snapshot.val())
                 toastShowMessageLongBottom("Bem Vindo")
                 Home.setUserName(SignIn.getName())
+                Home.setUserPk(SignIn.getId())
+                let deck = null
+                for(let i = 0; i < SignIn.getDecks().length; i++){
+                    deck = new Deck
+                    deck.setId(SignIn.getDecks()[i])
+                    deck.read().then(function (result){
+                        Home.addDeck(new Deck(result.id,result.title, result.score, result.category, result.cards, result.cardNumber))
+                    });
+                }
                 Screens.navigate(Home)
             });
         }).catch(function(error) {
@@ -82,6 +92,14 @@ const SignIn = {
         }).catch(function(error) {
             console.log(error);
         });
+    },
+    addDeck(deck){
+        if(this.state.decks == null)
+            this.state.decks = []
+        this.state.decks.push(deck)
+    },
+    getDecks(){
+        return this.state.decks;
     }
 }
 
@@ -93,7 +111,8 @@ const SignUp = {
         email:'',
         password:'',
         password_confirm:'',
-        photo:'img/logocerne-min.png'
+        photo:'img/logocerne-min.png',
+        decks:[]
     },
     show(){
         $('#' + this.id).removeClass('hide')
@@ -154,7 +173,7 @@ const SignUp = {
             return;
 
         firebase.auth().createUserWithEmailAndPassword(
-        this.state.email,this.state.password).then(function(user){
+        this.state.email.trim(),this.state.password).then(function(user){
             console.log(user.user.uid);
             SignUp.setId(user.user.uid);
             writeFirebase("/users/" + SignUp.getId(), SignUp.getState());
@@ -221,7 +240,7 @@ const Home = {
         $('#' + category.list).find('.deck-container').append(category.getHtml())
     },
     addDeck(deck){
-        this.addCategory(deck.category)
+        this.addCategory(new Category(deck.category.id, deck.category.title, deck.list))
         this.state.userDecks.push(deck)
         $('#' + deck.category.id).find('ul').append(deck.getHtml())
     },
@@ -237,6 +256,9 @@ const Home = {
     setUserPk(pk){
         this.state.userPk = pk
     },
+    getUserPk(){
+        return this.state.userPk
+    }
 }
 
 const DeckCreator = {

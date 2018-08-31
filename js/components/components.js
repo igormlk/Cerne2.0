@@ -33,12 +33,13 @@ class CardSide{
 }
 
 class Deck {
-    constructor(id,title = 'Sem nome', score = 0, category, cards = []){
+    constructor(id,title = 'Sem nome', score = 0, category, cards = [], cardNumber = 0){
         this.id = id;
         this.title = title;
         this.score = score;
         this.category = category;
         this.cards = cards
+        this.cardNumber = cardNumber;
     }
 
     add(){
@@ -51,6 +52,28 @@ class Deck {
     }
 
     save(){
+        if(!this.cards.length){
+            //Deseja realmente sair?
+            Screens.navigate(Home)
+            return
+        }
+        this.setId(generateUniqueKeyFirebase())
+        writeFirebase("/decks/" + this.getId(), this)
+        SignIn.addDeck(this.getId())
+        updateFirebase("/users/" + SignIn.getId(), SignIn.getState())
+        Home.addDeck(this)
+        Screens.navigate(Home)
+    }
+
+    read(){
+        if(!this.getId()){
+            console.log("deck nao encontrado")
+            return
+        }
+
+        return readFirebase("/decks/"+this.getId(),function(snapshot){
+            return snapshot.val()
+        })
 
     }
 

@@ -91,14 +91,8 @@ $(document).ready(function(){
     })
 
     $('#fin-deck').click(function(e){
-        if(!state.newDeck.cards.length){
-            //Deseja realmente sair?
-            Screens.navigate(Home)
-            return
-        }
-        Home.addDeck(state.newDeck)
+        state.newDeck.save();
         state.newDeck = new Deck
-        Screens.navigate(Home)
     })
 });
 
