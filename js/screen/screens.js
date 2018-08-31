@@ -47,7 +47,8 @@ const SignIn = {
                 Home.setUserName(SignIn.getName())
                 Home.setUserPk(SignIn.getId())
                 let deck = null
-                for(let i = 0; i < SignIn.getDecks().length; i++){
+                let len = SignIn.getDecks() != null ? SignIn.getDecks().length : 0
+                for(let i = 0; i < len; i++){
                     deck = new Deck
                     deck.setId(SignIn.getDecks()[i])
                     deck.read().then(function (result){
