@@ -50,6 +50,10 @@ body.dark #category-selector li, body.dark .card, body.dark #font-style, body.da
     color: #fff;
 }
 
+.icon{
+    height: 22px;
+    width: 22px;
+}
 
 #sign-in, #sign-up{
     display: flex;
@@ -574,7 +578,8 @@ input{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 200px
+    min-height: 200px;
+    text-align: center;
 }
 
 .creator{
@@ -657,10 +662,20 @@ input{
     background-size: contain;
 }
 
+#flip-card >svg{
+    height: 32px;
+    width: 32px;
+}
+
 #study-deck-name{
     text-align: center;
     margin: 0;
     margin-bottom: 16px;
+}
+
+#edit-card{
+    position: absolute;
+    right: 16px;
 }
 
 #card-scroll{

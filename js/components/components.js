@@ -343,7 +343,8 @@ const CardScroll = {
         cards: [],
     },
     iniciate(){
-        let c = new Card('blank', new CardSide, new CardSide)
+        $(this.fieldList).empty()
+        let c = new Card('blank', new CardSide('Vamos começar!'), new CardSide('Esse é o seu deck de ' + Study.state.deck.title))
         let i;
         for (i = 0; i < this.cardsNumber; i++) {
             $(this.fieldList).append(this.getCardHtml(c))
