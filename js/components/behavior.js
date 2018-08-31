@@ -94,5 +94,18 @@ $(document).ready(function(){
         state.newDeck.save();
         state.newDeck = new Deck
     })
+
+    $('#remembered').click(function(e){
+        CardScroll.pushRight()
+    })
+
+    $('#forgot').click(function(e){
+        CardScroll.pushLeft()
+    })
+
+    $('#flip-card').click(function(e){
+         $("#card-scroll ul li:nth-child(4)").find('.flip').toggleClass("is-flipped")
+    })
 });
 
+let teste

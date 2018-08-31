@@ -149,23 +149,7 @@ body.dark #category-selector li, body.dark .card, body.dark #font-style, body.da
 
 #new-deck{
     background-image: linear-gradient(to bottom right, #12c2e9, #c471ed);
-    height: 36px;
-    width: 36px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 16px;
-    border-top-left-radius: 100%;
-    position: fixed;
-    bottom: 0;
-    right: 0;
     z-index: 9999999999;
-}
-
-#new-deck svg{
-    height: 21px;
-    width: 21px;
-     z-index: 9999999999;
 }
 
 #action-bar{
@@ -318,7 +302,7 @@ ul {
     box-shadow: 3px 3px 20px rgba(0,0,0,0.2);
 }
 
-.deck.premium::after{
+#store > .deck::after{
     content: '';
     width: 21px;
     height: 21px;
@@ -377,7 +361,7 @@ ul {
 
 }
 
-#deck-creator, #settings{
+#deck-creator, #settings, #study{
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -671,4 +655,137 @@ input{
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+
+#card-scroll{
+    flex: 1;
+    display: flex;
+}
+
+#card-scroll ul{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#card-scroll ul li{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transition: 1s;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+.flip{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform: translateY(-20px);
+    transition: 0.5s;
+    transform-style: preserve-3d;
+}
+
+.flip.is-flipped{
+    transform: translateY(-20px) rotateY(180deg);
+}
+
+.flip > h1 {
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: absolute;
+    height: 100%;
+    width: 100%
+}
+.flip .front{
+
+    transform: rotateY(0deg)
+}
+.flip .back{
+
+    transform: rotateY(180deg)
+}
+#card-scroll ul li:nth-child(1){
+    transform: translateY(-59px) translateX(0) scale(0.5);
+    opacity: 0;
+    color: transparent
+}
+#card-scroll ul li:nth-child(2){
+    transform: translateY(-40px) scale(0.8);
+    opacity: 0.8;
+    color: transparent
+}
+#card-scroll ul li:nth-child(3){
+    transform: translateY(-20px) scale(0.85);
+    color: transparent
+}
+#card-scroll ul li:nth-child(4){
+    transform: translateY(0px) scale(0.90);
+    opacity: 1;
+}
+#card-scroll ul li:nth-child(5){
+    transform: translateY(50px) translateX(-100px) scale(1) rotate(-25deg);
+    opacity: 0;
+    transform-origin: 50% 100%;
+}
+
+#card-scroll.forgot ul li:nth-child(5){
+    transform: translateY(50px) translateX(100px) scale(1) rotate(25deg);
+    opacity: 0;
+    transform-origin: 50% 100%;
+}
+
+#study .actions{
+    min-height: 42px;
+    align-content: center;
+    justify-content: center;
+}
+
+.floating-button{
+    height: 42px;
+    width: 42px;
+    background-image: linear-gradient(to bottom right, #12c2e9, #c471ed);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    position: fixed;
+    bottom: 0;
+}
+
+.floating-button svg{
+    height: 21px;
+    width: 21px;
+    z-index: 9999999999;
+}
+
+.floating-button.right{
+    justify-content: flex-end;
+    padding: 16px;
+    border-top-left-radius: 100%;
+    right: 0;
+}
+
+.floating-button.left{
+    justify-content: flex-start;
+    border-top-right-radius: 100%;
+    left: 0;
+}
+
+#flip-card{
+    padding: 16px
+}
+
+#forgot{
+
+}
+
+#remember{
+
 }

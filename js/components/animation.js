@@ -82,6 +82,7 @@ const flashcardOut = new mojs.Html({
     duration: 500
 });
 
+
 let newFlashcardAnimation = new mojs.Timeline();
 newFlashcardAnimation.add(flashcardOut,flashcardIn)
 

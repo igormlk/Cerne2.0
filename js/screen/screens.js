@@ -1,5 +1,5 @@
 const Screens = {
-    screens: ['home','sign-in','sign-up','on-boarding','deck-creator','card-creator', 'cards-preview','settings'],
+    screens: ['home','sign-in','sign-up','on-boarding','deck-creator','card-creator', 'cards-preview','settings', 'study'],
     stack: [],
     navigate(screen){
         this.screens.map(function(screen){
@@ -196,8 +196,8 @@ const SignUp = {
 
 }
 
-const CardsPreview = {
-    id: 'cards-preview',
+const Study = {
+    id: 'study',
     state:{
         deck: {id: 'undefined', title: "Sem nome", score: 0, category: 'undefined', cards: []},
     },
@@ -205,9 +205,7 @@ const CardsPreview = {
         $('#' + this.id).removeClass('hide')
     },
     render(){
-        this.state.cards.map((card)=>{
-            this.addCard(card)
-        })
+
     },
     addCard(card){
 
@@ -335,5 +333,5 @@ const Settings = {
 }
 
 $(document).ready(function(){
-   Screens.navigate(SignIn)
+   Screens.navigate(Study)
 });
