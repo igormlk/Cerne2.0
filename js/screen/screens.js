@@ -333,5 +333,5 @@ const Settings = {
 }
 
 $(document).ready(function(){
-   Screens.navigate(Study)
+   Screens.navigate(SignIn)
 });
