@@ -309,7 +309,7 @@ const CardEditor = {
     idEditCard: 'edit-card',
     idFinCard:'fin-deck',
     state:{
-        card:''
+        card: null
     },
     show(){
         $('#' + this.id).removeClass('hide')

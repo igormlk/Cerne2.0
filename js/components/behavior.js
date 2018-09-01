@@ -85,7 +85,7 @@ $(document).ready(function(){
             alert('O flashcard ainda possui algum lado em branco!')
             return
         }
-        state.newDeck.pushCard(new Card(0,FlashcardCreator.front,FlashcardCreator.back))
+        state.newDeck.pushCard(new Card(generateUniqueKeyFirebase(),FlashcardCreator.front,FlashcardCreator.back))
         FlashcardCreator.erase()
         newFlashcardAnimation.play()
     })
@@ -106,6 +106,12 @@ $(document).ready(function(){
     $('#flip-card').click(function(e){
          $("#card-scroll ul li:nth-child(4)").find('.flip').toggleClass("is-flipped")
     })
+
+    $('#edit-card').click(function(e){
+        updateFirebase('/decks/'+Study.state.deck.id, Study.state.deck);
+        Screens.navigate(Study)
+    })
+
 });
 
 let teste
