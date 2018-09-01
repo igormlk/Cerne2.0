@@ -318,6 +318,7 @@ const CardEditor = {
     },
     render(){
         FlashcardCreator.flip()
+        FlashcardCreator.flip()
         $('#' + this.idEditCard).removeClass('hide')
         $('#' + this.idAddCard).addClass('hide')
         $('#' + this.idFinCard).addClass('hide')
