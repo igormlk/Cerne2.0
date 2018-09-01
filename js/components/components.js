@@ -1,8 +1,8 @@
 class Card{
     constructor(id,front,back, score = 1){
         this.id = id
-        this.front = front
-        this.back = back
+        this.front = JSON.parse(JSON.stringify(front))
+        this.back = JSON.parse(JSON.stringify(back))
         this.score = score
     }
     getHtml(){
@@ -149,7 +149,7 @@ const FontSlider = {
         min: 0,
         fontMin: 20,
         fontMax : 45,
-        factor: 0,
+        //factor: 0,
         range: 0,
         currentSize: 20,
         factor(){return((this.fontMax - this.fontMin) / this.max)},
@@ -164,14 +164,14 @@ const FontSlider = {
         },
         fontSize(){
             this.range = this.fontMax - this.fontMin
-            this.factor = (this.range / this.max)
-            this.currentSize = (((this.mov * this.factor) + this.fontMin))
+            let factor = (this.range / this.max)
+            this.currentSize = (((this.mov * factor) + this.fontMin))
             $(this.textField).css({'font-size': this.currentSize + 'px'})
         },
         setSize(size){
             this.currentSize = size
             $(this.textField).css({'font-size': this.currentSize + 'px'})
-            this.mov = ((this.currentSize - this.fontMin) / this.factor)
+            this.mov = ((this.currentSize - this.fontMin) / this.factor())
             $(this.circle).css({'transform': 'translateX('+ this.mov +'px)'})
         },
         render(){

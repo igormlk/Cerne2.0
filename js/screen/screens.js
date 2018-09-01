@@ -293,12 +293,44 @@ const DeckCreator = {
 
 const CardCreator = {
     id: 'card-creator',
+    idEditCard: 'edit-card',
+    state:{},
+    show(){
+        $('#' + this.id).removeClass('hide')
+        $('#' + this.idEditCard).addClass('hide')
+    },
+    render(){
+    }
+}
+
+const CardEditor = {
+    id: 'card-creator',
+    idAddCard: 'add-card',
+    idEditCard: 'edit-card',
+    idFinCard:'fin-deck',
     state:{
+        card:''
     },
     show(){
         $('#' + this.id).removeClass('hide')
+        FontSlider.render()
+        FontSlider.setSize(FontSlider.currentSize)
     },
     render(){
+        FlashcardCreator.flip()
+        $('#' + this.idEditCard).removeClass('hide')
+        $('#' + this.idAddCard).addClass('hide')
+        $('#' + this.idFinCard).addClass('hide')
+        $('#' + this.idFinCard).addClass('hide')
+    },
+    editCard(card){
+        this.state.card = card
+        FlashcardCreator.front = this.state.card.front
+        FlashcardCreator.back = this.state.card.back
+        Screens.navigate(this)
+    },
+    save(){
+
     }
 }
 
