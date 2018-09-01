@@ -674,10 +674,10 @@ input{
 #study-deck-name{
     text-align: center;
     margin: 0;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
 }
 
-#edit-card{
+#edit-card-header{
     position: absolute;
     right: 16px;
 }
