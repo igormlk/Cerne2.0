@@ -370,6 +370,7 @@ const CardScroll = {
         }
         this.rewriteCard(4, beginningCard)
         this.carrousselCards();
+        this.carrousselArray(true)
     },
     carrousselArray(remembered){
         if (remembered){
