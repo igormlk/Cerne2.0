@@ -405,11 +405,13 @@ const CardScroll = {
         $(this.field).removeClass('remembered')
         this.pushCard()
         this.carrousselArray(false)
+        forgetButtonAnimation.replay()
     },
     pushRight(){
         $(this.field).addClass('remembered')
         this.pushCard()
         this.carrousselArray(true)
+        rememberButtonAnimation.replay()
     },
     animate(){
         $(this.fieldCards + ":nth-child(5)" ).insertBefore( $(this.fieldCards + ":nth-child(1)"));
@@ -425,6 +427,9 @@ const CardScroll = {
 
 const Store = {
     id:'',
+    state: {
+      decks: []
+    },
     getStoreDecks(){
 
         readFirebase("/decks/", function(snapshot){

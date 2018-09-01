@@ -104,6 +104,7 @@ $(document).ready(function(){
     })
 
     $('#flip-card').click(function(e){
+        flipStudyAnimation.replay()
          $("#card-scroll ul li:nth-child(4)").find('.flip').toggleClass("is-flipped")
     })
 
@@ -112,6 +113,13 @@ $(document).ready(function(){
         Screens.navigate(Study)
     })
 
+    $('#edit-card-header').click(function(e){
+        let y = $(this).position().top + 27
+        let x = $(this).position().left + 27
+        burst.tune({x:x,y:y});
+        burst.replay()
+        setTimeout(()=>{CardEditor.editCard(CardScroll.state.currentCard)},500)
+    })
 });
 
 let teste
