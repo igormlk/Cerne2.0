@@ -219,6 +219,15 @@ const Study = {
     render(){
         CardScroll.setCards(this.state.deck.cards)
         $('#study-deck-name').text(this.state.deck.title)
+
+        if(this.state.deck.category.list == 'store'){
+            $('#study-deck-name').removeAttr('onclick')
+            $('#edit-card-header').addClass('hide')
+        }else{
+            $('#study-deck-name').attr('onclick', 'DeckEditor.startDeckEditor()')
+            $('#edit-card-header').removeClass('hide')
+        }
+
     },
     addCard(card){
 
@@ -297,6 +306,8 @@ const Home = {
         let a = this.state.userDecks.filter((x)=>x.id == id)[0]
         if(a == undefined)
             return this.state.storeDecks.filter((x)=>x.id == id)[0]
+        else
+            return a
     },
     setUserName(name){
         this.state.userName = name
