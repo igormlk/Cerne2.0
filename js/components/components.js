@@ -132,7 +132,7 @@ class Category{
         this.decks.push(deck)
     }
 
-    setId(id){thos.id=id}
+    setId(id){this.id=id}
     setTitle(title){this.title=title}
     setDecks(decks){this.decks=decks}
     getId(){return this.id}
