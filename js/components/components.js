@@ -372,17 +372,20 @@ const CardScroll = {
             $(this.fieldList).append(this.getCardHtml(blankCard))
         }
         this.rewriteCard(4, beginningCard)
-        this.rewriteCard(4, beginningCard)
         this.carrousselCards();
     },
-    carrousselArray(){
-        this.state.cards.push(this.state.cards.shift())
+    carrousselArray(remembered){
+        if (remembered){
+            this.state.cards.push(this.state.cards.shift())
+            return
+        }
+
+        this.state.cards.splice(Math.floor(Math.random() * Math.ceil(this.state.cards.length/2)) + 1 ,0,(this.state.cards.shift()))
     },
     carrousselCards(){
         this.state.currentCard = this.state.cards[this.state.cards.length - 1]
         this.rewriteCard(3, this.state.cards[0])
         this.repaintCard(3, this.state.cards[0])
-        this.carrousselArray()
     },
     rewriteCard(pos, card){
         $(this.fieldCards + ":nth-child("+pos+") .front").find('h1').text(card.front.text)
@@ -401,12 +404,14 @@ const CardScroll = {
         this.carrousselCards()
     },
     pushLeft(){
-        $(this.field).removeClass('forgot')
+        $(this.field).removeClass('remembered')
         this.pushCard()
+        this.carrousselArray(false)
     },
     pushRight(){
-        $(this.field).addClass('forgot')
+        $(this.field).addClass('remembered')
         this.pushCard()
+        this.carrousselArray(true)
     },
     animate(){
         $(this.fieldCards + ":nth-child(5)" ).insertBefore( $(this.fieldCards + ":nth-child(1)"));

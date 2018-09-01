@@ -759,7 +759,7 @@ input{
 }
 #card-scroll ul li:nth-child(3){
     transform: translateY(-20px) scale(0.85);
-    color: transparent
+    color: transparent!important
 }
 #card-scroll ul li:nth-child(4){
     transform: translateY(0px) scale(0.90);
@@ -771,7 +771,7 @@ input{
     transform-origin: 50% 100%;
 }
 
-#card-scroll.forgot ul li:nth-child(5){
+#card-scroll.remembered ul li:nth-child(5){
     transform: translateY(50px) translateX(100px) scale(1) rotate(25deg);
     opacity: 0;
     transform-origin: 50% 100%;
