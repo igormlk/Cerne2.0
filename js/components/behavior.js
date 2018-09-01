@@ -104,12 +104,21 @@ $(document).ready(function(){
     })
 
     $('#flip-card').click(function(e){
+        flipStudyAnimation.replay()
          $("#card-scroll ul li:nth-child(4)").find('.flip').toggleClass("is-flipped")
     })
 
     $('#edit-card').click(function(e){
         updateFirebase('/decks/'+Study.state.deck.id, Study.state.deck);
         Screens.navigate(Study)
+    })
+
+    $('#edit-card-header').click(function(e){
+        let y = $(this).position().top + 27
+        let x = $(this).position().left + 27
+        burst.tune({x:x,y:y});
+        burst.replay()
+        setTimeout(()=>{CardEditor.editCard(CardScroll.state.currentCard)},500)
     })
 
     $('#' + DeckEditor.btnSaveDeck).click(function(e){
@@ -127,7 +136,6 @@ $(document).ready(function(){
         Study.state.deck.update()
         Screens.navigate(Study)
     })
-
 
 });
 

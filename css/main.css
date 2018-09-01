@@ -365,6 +365,10 @@ ul {
 
 }
 
+#edit-card-header{
+    padding: 16px;
+}
+
 #deck-creator, #settings, #study{
     padding: 16px;
     display: flex;
@@ -679,7 +683,7 @@ input{
 
 #edit-card-header{
     position: absolute;
-    right: 16px;
+    right: 0
 }
 
 #card-scroll{
