@@ -466,13 +466,14 @@ const Store = {
 
         var returnArr = [];
 
-        snapshot.forEach(function(childSnapshot) {
+        snapshot.forEach(function(result) {
 
-            let item = childSnapshot.val();
-            item.key = childSnapshot.key;
+            let item = result.val();
+            item.id = result.key;
 
-            if(item.category.list == 'store')
-                returnArr.push(item);
+            if(item.category.list == 'store'){
+                Home.addStoreDeck(new Deck(item.id,item.title, item.score, item.category, item.cards, item.cardNumber))
+            }
         });
 
          return returnArr

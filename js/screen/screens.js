@@ -60,6 +60,7 @@ const SignIn = {
                         Home.addDeck(new Deck(result.id,result.title, result.score, result.category, result.cards, result.cardNumber))
                     });
                 }
+                Store.getStoreDecks()
                 DarkMode.activate(SignIn.state.preferences.darkMode.status)
                 Screens.navigate(Home)
             });
@@ -240,6 +241,7 @@ const Home = {
         userAvatar: 'img/logocerne.png',
         userName: '',
         userDecks: [],
+        storeDecks:[],
         userPk: ''
     },
     show(){
@@ -251,12 +253,22 @@ const Home = {
         $('.profile-pic').css({'background-image':'url(' + this.state.userAvatar + ')'})
         $('#blured-image').css({'background-image':'url(' + this.state.userAvatar + ')'})
 
-        if(this.state.userDecks.length == 0 || this.state.userDecks.length == $('#collection').find('.deck').length)
-            return
+        if(this.state.userDecks.length != 0 && this.state.userDecks.length != $('#collection').find('.deck').length){
 
-        this.state.userDecks.map((deck)=>{
+            this.state.userDecks.map((deck)=>{
             this.addDeck(deck)
-        })
+            })
+
+        }
+        else if(this.state.storeDecks.length != 0 && this.state.storeDecks.length != $('#store').find('.deck').length){
+
+            this.state.storeDecks.map((deck)=>{
+            this.addStoreDeck(deck)
+            })
+
+        }
+
+
     },
     addCategory(category){
         if(Home.state.userDecks.find((x)=> x.category.id == category.id) != undefined)
@@ -264,13 +276,20 @@ const Home = {
         $('#' + category.list).find('.deck-container').append(category.getHtml())
     },
     addDeck(deck){
-        this.addCategory(new Category(deck.category.id, deck.category.title, deck.list))
+        this.addCategory(new Category(deck.category.id, deck.category.title, deck.category.list))
         this.state.userDecks.push(deck)
         $('#user-decks-number').text(this.state.userDecks.length)
         $('#' + deck.category.id).find('ul').append(deck.getHtml())
     },
+    addStoreDeck(deck){
+        this.addCategory(new Category(deck.category.id, deck.category.title, deck.category.list))
+        this.state.storeDecks.push(deck)
+        $('#' + deck.category.id).find('ul').append(deck.getHtml())
+    },
     getDeck(id){
-        return this.state.userDecks.filter((x)=>x.id == id)[0]
+        let a = this.state.userDecks.filter((x)=>x.id == id)[0]
+        if(a == undefined)
+            return this.state.storeDecks.filter((x)=>x.id == id)[0]
     },
     setUserName(name){
         this.state.userName = name
