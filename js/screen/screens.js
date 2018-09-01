@@ -247,6 +247,13 @@ const Home = {
             this.addDeck(deck)
         })
     },
+    resetList(){
+        $('#collection').find('.deck-container').empty()
+        $('#store').find('.deck-container').empty()
+        this.state.userDecks.map((deck)=>{
+            this.addDeck(deck)
+        })
+    },
     addCategory(category){
         if(Home.state.userDecks.find((x)=> x.category.id == category.id) != undefined)
             return

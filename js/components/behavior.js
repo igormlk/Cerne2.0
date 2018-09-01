@@ -130,10 +130,19 @@ $(document).ready(function(){
             alert('Selecione uma categoria!')
             return
         }
-
         Study.state.deck.setTitle($('#new-deck-name').val())
         Study.state.deck.setCategory(CategorySelector.getCategory())
         Study.state.deck.update()
+
+        if($('#'+Study.state.deck.id).parent().parent().attr('id') != Study.state.deck.category.id){
+            Home.resetList()
+            Screens.navigate(Study)
+            return
+        }
+
+        let find = Home.state.userDecks.find((x)=> x.id == Study.state.deck.id)
+        Home.state.userDecks[Home.state.userDecks.indexOf(find)] = Study.state.deck
+        $('#'+Study.state.deck.id).find('.deck-title').text(Study.state.deck.title)
         Screens.navigate(Study)
     })
 
