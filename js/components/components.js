@@ -302,6 +302,15 @@ const categorys = [
     new Category(0,'Português','collection'),
     new Category(1,'Matemática','collection'),
     new Category(2,'Idiomas','collection'),
+    new Category(3,'Biologia','collection'),
+    new Category(4,'Esportes','collection'),
+    new Category(5,'Física','collection'),
+    new Category(6,'Química','collection'),
+    new Category(7,'Geografia','collection'),
+    new Category(8,'História','collection'),
+    new Category(9,'Literatura','collection'),
+    new Category(10,'Artes','collection'),
+    new Category(11,'Música','collection'),
     new Category(9999,'Nova Categoria','collection'),
 ]
 

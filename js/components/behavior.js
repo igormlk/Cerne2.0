@@ -113,7 +113,6 @@ $(document).ready(function(){
         Screens.navigate(Study)
     })
 
-<<<<<<< HEAD
     $('#edit-card-header').click(function(e){
         let y = $(this).position().top + 27
         let x = $(this).position().left + 27
@@ -121,7 +120,7 @@ $(document).ready(function(){
         burst.replay()
         setTimeout(()=>{CardEditor.editCard(CardScroll.state.currentCard)},500)
     })
-=======
+
     $('#' + DeckEditor.btnSaveDeck).click(function(e){
         if ($('#new-deck-name').val() == ''){
             alert('Digite o nome do deck!')
@@ -138,8 +137,6 @@ $(document).ready(function(){
         Screens.navigate(Study)
     })
 
-
->>>>>>> origin/master
 });
 
 let teste
