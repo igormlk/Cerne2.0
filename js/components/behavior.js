@@ -85,7 +85,7 @@ $(document).ready(function(){
             alert('O flashcard ainda possui algum lado em branco!')
             return
         }
-        state.newDeck.pushCard(new Card(0,FlashcardCreator.front,FlashcardCreator.back,FlashcardCreator))
+        state.newDeck.pushCard(new Card(0,FlashcardCreator.front,FlashcardCreator.back))
         FlashcardCreator.erase()
         newFlashcardAnimation.play()
     })
