@@ -105,6 +105,7 @@
             <ul id="category-selector">
             </ul>
             <div class="button galaxy" id="create-deck">COMEÇAR</div>
+            <div class="button galaxy" id="save-deck">SALVAR</div>
         </div>
         <div id="card-creator" class="hide">
             <div class="row">
@@ -133,7 +134,7 @@
             </div>
             <div class="actions">
                 <div id="add-card" class="button galaxy">ADICIONAR</div>
-                <div id="edit-card" class="button galaxy">EDITAR</div>
+                <div id="edit-card" class="button galaxy">SALVAR</div>
                 <div id="fin-deck" class="button galaxy">FINALIZAR</div>
             </div>
         </div>
@@ -145,7 +146,7 @@
                 <h3>Flashcards</h3>
                 <img src="img/edit.svg" id="edit-card-header" class="icon">
             </div>
-            <h3 id="study-deck-name"></h3>
+            <h3 id="study-deck-name" onclick="DeckEditor.startDeckEditor()"></h3>
             <div id="card-scroll">
                 <ul>
                 </ul>

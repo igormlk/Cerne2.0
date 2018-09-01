@@ -280,14 +280,39 @@ const Home = {
 
 const DeckCreator = {
     id: 'deck-creator',
+    btnSaveDeck:'save-deck',
+    btnCreateDeck:'create-deck',
     state:{
     },
     show(){
         $('#' + this.id).removeClass('hide')
     },
     render(){
+        $('#' + this.btnSaveDeck).addClass('hide')
+        $('#' + this.btnCreateDeck).removeClass('hide')
         $('#new-deck-name').val('')
         CategorySelector.render()
+    }
+}
+
+const DeckEditor = {
+    id: 'deck-creator',
+    btnSaveDeck:'save-deck',
+    btnCreateDeck:'create-deck',
+    state:{
+    },
+    show(){
+        $('#' + this.id).removeClass('hide')
+    },
+    render(){
+        $('#new-deck-name').val(Study.state.deck.title)
+        $('#' + this.btnSaveDeck).removeClass('hide')
+        $('#' + this.btnCreateDeck).addClass('hide')
+        CategorySelector.render()
+    },
+    startDeckEditor(){
+        Screens.navigate(this)
+        CategorySelector.setCategory(Study.state.deck.category)
     }
 }
 
@@ -317,6 +342,7 @@ const CardEditor = {
         FontSlider.setSize(FontSlider.currentSize)
     },
     render(){
+        FlashcardCreator.flip()
         FlashcardCreator.flip()
         $('#' + this.idEditCard).removeClass('hide')
         $('#' + this.idAddCard).addClass('hide')

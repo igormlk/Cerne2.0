@@ -72,6 +72,10 @@ class Deck {
         Screens.navigate(Home)
     }
 
+    update(){
+        updateFirebase("/decks/" + this.getId(), this)
+    }
+
     read(){
         return readFirebase("/decks/"+this.getId(),function(snapshot){
             return snapshot.val()
