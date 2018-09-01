@@ -197,6 +197,9 @@ const FontStyle = {
         },
         getStyle(){
             return this.fonts[this.currentFontIndex];
+        },
+        getFont(index){
+            return this.fonts[index]
         }
     }
 
@@ -206,19 +209,27 @@ const FontColor = {
         currentColor: '#000',
         markers: ['red','yellow', 'orange', 'green','blue','pink','purple'],
         setColor(color){
-            let font = (color == 'yellow' || color == 'orange' || color == 'pink') ? '#000' : '#FFF'
-            this.currentColor = $('.'+color).css('background-color')
             $(this.cardfield).removeClass()
-
+            $(this.cardfield).css(this.getColorTheme(color))
+        },
+        getColor(){
+            return this.currentColor
+        },
+        getColorCode(color){
+            return $('.'+color).css('background-color')
+        },
+        getColorTheme(color){
+            this.currentColor = this.getColorCode(color)
+            let font = (color == 'yellow' || color == 'orange' || color == 'pink') ? '#000' : '#FFF'
             let colorScheme = (this.markers.includes(color) ? {'background-color':this.currentColor,'color' : font} : {'color':this.currentColor, 'background-color' : '#FFF'})
 
             if($('body').hasClass('dark')&&this.currentColor == 'rgb(255, 255, 255)')
                 colorScheme = {'background-color':'transparent','color' : font}
 
-            $(this.cardfield).css(colorScheme)
-        },
-        getColor(){
-            return this.currentColor
+            if(!($('body').hasClass('dark'))&&this.currentColor == 'rgb(0, 0, 0)')
+                colorScheme = {'background-color':'transparent','color' : font}
+
+            return colorScheme
         }
     }
 
@@ -344,6 +355,11 @@ const CardScroll = {
     fieldCards: '#card-scroll ul li',
     cardsNumber: 5,
     state: {
+        style:{
+            color: '#000',
+            size: '20',
+            style: 'Comfortaa',
+        },
         cards: [],
     },
     iniciate(){
@@ -355,6 +371,7 @@ const CardScroll = {
             $(this.fieldList).append(this.getCardHtml(blankCard))
         }
         this.rewriteCard(4, beginningCard)
+        this.rewriteCard(4, beginningCard)
         this.carrousselCards();
     },
     carrousselArray(){
@@ -362,11 +379,20 @@ const CardScroll = {
     },
     carrousselCards(){
         this.rewriteCard(3, this.state.cards[0])
+        this.repaintCard(3, this.state.cards[0])
         this.carrousselArray()
     },
     rewriteCard(pos, card){
-        $(this.fieldCards + ":nth-child("+pos+")" ).find('.front').text(card.front.text)
-        $(this.fieldCards + ":nth-child("+pos+")" ).find('.back').text(card.back.text)
+        $(this.fieldCards + ":nth-child("+pos+") .front").find('h1').text(card.front.text)
+        $(this.fieldCards + ":nth-child("+pos+") .back").find('h1').text(card.back.text)
+    },
+    repaintCard(pos, card){
+        $(this.fieldCards + ":nth-child("+pos+") .front").find('h1').css({
+            'font-size':Math.ceil(card.front.size),
+            'font-family':FontStyle.getFont(card.front.style)}).css(FontColor.getColorTheme(card.front.color))
+        $(this.fieldCards + ":nth-child("+pos+") .back").find('h1').css({
+            'font-size':Math.ceil(card.back.size),
+            'font-family':FontStyle.getFont(card.back.style)}).css(FontColor.getColorTheme(card.back.color))
     },
     pushCard(){
         this.animate()
@@ -388,6 +414,6 @@ const CardScroll = {
         this.iniciate()
     },
     getCardHtml(card){
-        return '<li><div class="flip"><h1 class="front card">'+card.front.text+'</h1><h1 class="back card">'+card.back.text+'</h1></div></li>'
+        return '<li><div class="flip"><div class="front card"><h1>'+card.front.text+'</h1></div><div class="back card"><h1>'+card.back.text+'</h1></div></li>'
     }
 }

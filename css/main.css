@@ -582,6 +582,7 @@ input{
     text-align: center;
 }
 
+
 .creator{
     flex: 1;
     width: 100%;
@@ -635,7 +636,10 @@ input{
     font-size: '20px';
     text-align: center;
     padding: 0px 8px;
-    border-radius: 3px
+    border-radius: 3px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 #card-input{
@@ -683,6 +687,11 @@ input{
     display: flex;
 }
 
+#card-scroll h1{
+    padding: 0 16px;
+    border-radius: 3px;
+}
+
 #card-scroll ul{
     flex: 1;
     display: flex;
@@ -717,11 +726,18 @@ input{
     transform: translateY(-20px) rotateY(180deg);
 }
 
-.flip > h1 {
+.flip > div {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     position: absolute;
     height: 100%;
-    width: 100%
+    width: 100%;
+}
+
+.flip > h1{
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    position: relative;
 }
 .flip .front{
 
