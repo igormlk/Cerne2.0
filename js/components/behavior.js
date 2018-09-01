@@ -148,4 +148,7 @@ $(document).ready(function(){
 
 });
 
-let teste
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log(navigator.camera);
+}

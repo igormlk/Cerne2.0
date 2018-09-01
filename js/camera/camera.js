@@ -5,14 +5,14 @@ function cameraTakePicture(cameraSuccess, cameraError){
     var camOptions = {
         quality : 100,
         destinationType : Camera.DestinationType.DATA_URL,
-        sourceType : Camera.PictureSourceType.CAMERA,
+        sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM,
         allowEdit : false,
         encodingType: Camera.EncodingType.JPEG,
         targetWidth: 100,
         targetHeight: 100,
         popoverOptions: CameraPopoverOptions,
         correctOrientation: true,
-        saveToPhotoAlbum: false};
+        saveToPhotoAlbum: true};
 
     navigator.camera.getPicture(cameraSuccess, cameraError, camOptions);
 }
@@ -20,9 +20,12 @@ function cameraTakePicture(cameraSuccess, cameraError){
 function setImagemScreen(id, imageData){
     var img = $(id);
     img.css("background-image",  "url(data:image/jpeg;base64,"+imageData+")");
+    SignIn.state.photo = imageData;
+    SignIn.update();
 }
 
 function capturouImagem(imageData){
+    console.log(imageData)
     setImagemScreen(idImagemTela, imageData);
 }
 

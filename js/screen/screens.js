@@ -51,6 +51,7 @@ const SignIn = {
                 toastShowMessageLongBottom("Bem Vindo")
                 Home.setUserName(SignIn.getName())
                 Home.setUserPk(SignIn.getId())
+                Home.setUserAvatar(SignIn.state.photo, true)
                 let deck = null
                 let len = SignIn.getDecks() != null ? SignIn.getDecks().length : 0
                 for(let i = 0; i < len; i++){
@@ -111,6 +112,9 @@ const SignIn = {
     },
     getDecks(){
         return this.state.decks;
+    },
+    update(){
+        updateFirebase("/users/"+this.state.id, this.state)
     }
 }
 
@@ -122,7 +126,7 @@ const SignUp = {
         email:'',
         password:'',
         password_confirm:'',
-        photo:'img/logocerne-min.png',
+        photo:' ',
         decks:[],
         preferences: {
             darkMode: {
@@ -247,7 +251,7 @@ const Study = {
 const Home = {
     id: 'home',
     state:{
-        userAvatar: 'img/logocerne.png',
+        userAvatar: ' ',
         userName: '',
         userDecks: [],
         storeDecks:[],
@@ -259,7 +263,7 @@ const Home = {
     render(){
         $('#user-name').text(this.state.userName)
         $('#user-decks-number').text(this.state.userDecks.length)
-        $('.profile-pic').css({'background-image':'url(' + this.state.userAvatar + ')'})
+        $('.profile-pic').css({'background-image':'url(data:image/jpeg;base64,' + this.state.userAvatar + ')'})
         $('#blured-image').css({'background-image':'url(' + this.state.userAvatar + ')'})
 
         if(this.state.userDecks.length != 0 && this.state.userDecks.length != $('#collection').find('.deck').length){
@@ -312,7 +316,7 @@ const Home = {
     setUserName(name){
         this.state.userName = name
     },
-    setUserAvatar(avatar){
+    setUserAvatar(avatar, base64){
         this.state.userAvatar = avatar
     },
     setUserDecks(decks){
