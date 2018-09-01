@@ -112,6 +112,23 @@ $(document).ready(function(){
         Screens.navigate(Study)
     })
 
+    $('#' + DeckEditor.btnSaveDeck).click(function(e){
+        if ($('#new-deck-name').val() == ''){
+            alert('Digite o nome do deck!')
+            return
+        }
+        if (CategorySelector.getCategory() == -1){
+            alert('Selecione uma categoria!')
+            return
+        }
+
+        Study.state.deck.setTitle($('#new-deck-name').val())
+        Study.state.deck.setCategory(CategorySelector.getCategory())
+        Study.state.deck.update()
+        Screens.navigate(Study)
+    })
+
+
 });
 
 let teste
