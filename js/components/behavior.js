@@ -135,7 +135,8 @@ $(document).ready(function(){
         Study.state.deck.update()
 
         if($('#'+Study.state.deck.id).parent().parent().attr('id') != Study.state.deck.category.id){
-            Home.resetList()
+            $('#'+Study.state.deck.id).remove()
+            Home.addDeck(Study.state.deck)
             Screens.navigate(Study)
             return
         }

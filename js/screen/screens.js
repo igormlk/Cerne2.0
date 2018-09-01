@@ -291,6 +291,11 @@ const Home = {
             return
         $('#' + category.list).find('.deck-container').append(category.getHtml())
     },
+    addStoreCategory(category){
+        if(Home.state.storeDecks.find((x)=> x.category.id == category.id) != undefined)
+            return
+        $('#' + category.list).find('.deck-container').append(category.getHtml())
+    },
     addDeck(deck){
         this.addCategory(new Category(deck.category.id, deck.category.title, deck.category.list))
         this.state.userDecks.push(deck)
@@ -298,7 +303,7 @@ const Home = {
         $('#' + deck.category.id).find('ul').append(deck.getHtml())
     },
     addStoreDeck(deck){
-        this.addCategory(new Category(deck.category.id, deck.category.title, deck.category.list))
+        this.addStoreCategory(new Category(deck.category.id, deck.category.title, deck.category.list))
         this.state.storeDecks.push(deck)
         $('#' + deck.category.id).find('ul').append(deck.getHtml())
     },
