@@ -348,19 +348,37 @@ const CardScroll = {
     },
     iniciate(){
         $(this.fieldList).empty()
-        let c = new Card('blank', new CardSide('Vamos começar!'), new CardSide('Esse é o seu deck de ' + Study.state.deck.title))
+        let blankCard = new Card('blank', new CardSide(''), new CardSide(''))
+        let beginningCard = new Card('blank', new CardSide('Vamos começar!'), new CardSide('Esse é o seu deck de ' + Study.state.deck.title))
         let i;
         for (i = 0; i < this.cardsNumber; i++) {
-            $(this.fieldList).append(this.getCardHtml(c))
+            $(this.fieldList).append(this.getCardHtml(blankCard))
         }
+        this.rewriteCard(4, beginningCard)
+        this.carrousselCards();
+    },
+    carrousselArray(){
+        this.state.cards.push(this.state.cards.shift())
+    },
+    carrousselCards(){
+        this.rewriteCard(3, this.state.cards[0])
+        this.carrousselArray()
+    },
+    rewriteCard(pos, card){
+        $(this.fieldCards + ":nth-child("+pos+")" ).find('.front').text(card.front.text)
+        $(this.fieldCards + ":nth-child("+pos+")" ).find('.back').text(card.back.text)
+    },
+    pushCard(){
+        this.animate()
+        this.carrousselCards()
     },
     pushLeft(){
         $(this.field).removeClass('forgot')
-        this.animate()
+        this.pushCard()
     },
     pushRight(){
         $(this.field).addClass('forgot')
-        this.animate()
+        this.pushCard()
     },
     animate(){
         $(this.fieldCards + ":nth-child(5)" ).insertBefore( $(this.fieldCards + ":nth-child(1)"));
