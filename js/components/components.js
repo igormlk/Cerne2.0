@@ -355,7 +355,7 @@ const CardScroll = {
     fieldCards: '#card-scroll ul li',
     cardsNumber: 5,
     state: {
-        currentCardId:'',
+        currentCard:{},
         style:{
             color: '#000',
             size: '20',
@@ -379,7 +379,7 @@ const CardScroll = {
         this.state.cards.push(this.state.cards.shift())
     },
     carrousselCards(){
-        this.state.currentCardId = this.state.cards[0].id
+        this.state.currentCard = this.state.cards[this.state.cards.length - 1]
         this.rewriteCard(3, this.state.cards[0])
         this.repaintCard(3, this.state.cards[0])
         this.carrousselArray()
