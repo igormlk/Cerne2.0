@@ -311,6 +311,7 @@ const categorys = [
     new Category(9,'Literatura','collection'),
     new Category(10,'Artes','collection'),
     new Category(11,'Música','collection'),
+    new Category(11,'Tecnologia','collection'),
     new Category(9999,'Nova Categoria','collection'),
 ]
 
