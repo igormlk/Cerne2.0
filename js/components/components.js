@@ -355,6 +355,7 @@ const CardScroll = {
     fieldCards: '#card-scroll ul li',
     cardsNumber: 5,
     state: {
+        currentCardId:'',
         style:{
             color: '#000',
             size: '20',
@@ -378,6 +379,7 @@ const CardScroll = {
         this.state.cards.push(this.state.cards.shift())
     },
     carrousselCards(){
+        this.state.currentCardId = this.state.cards[0].id
         this.rewriteCard(3, this.state.cards[0])
         this.repaintCard(3, this.state.cards[0])
         this.carrousselArray()
@@ -414,6 +416,6 @@ const CardScroll = {
         this.iniciate()
     },
     getCardHtml(card){
-        return '<li><div class="flip"><div class="front card"><h1>'+card.front.text+'</h1></div><div class="back card"><h1>'+card.back.text+'</h1></div></li>'
+        return '<li><div class="flip" id="' + card.id + '"><div class="front card"><h1>'+card.front.text+'</h1></div><div class="back card"><h1>'+card.back.text+'</h1></div></li>'
     }
 }
