@@ -8,6 +8,9 @@ class Card{
     getHtml(){
         return '<li id='+this.id+'>'+this.front+'</li>'
     }
+    getHtmlStore(){
+        return '<li id='+this.id+'>'+this.front+'</li>'
+    }
     setId(id){this.id=id}
     setFront(front){this.front=front}
     setBack(back){this.back=back}
@@ -70,15 +73,9 @@ class Deck {
     }
 
     read(){
-        if(!this.getId()){
-            console.log("deck nao encontrado")
-            return
-        }
-
         return readFirebase("/decks/"+this.getId(),function(snapshot){
             return snapshot.val()
         })
-
     }
 
     getStars(score){
@@ -422,5 +419,27 @@ const CardScroll = {
     },
     getCardHtml(card){
         return '<li><div class="flip" id="' + card.id + '"><div class="front card"><h1>'+card.front.text+'</h1></div><div class="back card"><h1>'+card.back.text+'</h1></div></li>'
+    }
+}
+
+const Store = {
+    id:'',
+    getStoreDecks(){
+
+        readFirebase("/decks/", function(snapshot){
+
+        var returnArr = [];
+
+        snapshot.forEach(function(childSnapshot) {
+
+            let item = childSnapshot.val();
+            item.key = childSnapshot.key;
+
+            if(item.category.list == 'store')
+                returnArr.push(item);
+        });
+
+         return returnArr
+        })
     }
 }
