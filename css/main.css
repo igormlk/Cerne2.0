@@ -306,7 +306,7 @@ ul {
     box-shadow: 3px 3px 20px rgba(0,0,0,0.2);
 }
 
-#store > .deck::after{
+#store .deck::after{
     content: '';
     width: 21px;
     height: 21px;
