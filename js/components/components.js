@@ -347,6 +347,23 @@ const DarkMode = {
         $(this.field).attr('src',(this.state.status) ? 'img/moon-on.svg' : 'img/moon-off.svg')
         $('body').toggleClass('dark')
         darkModeAnimation.replay()
+    },
+    activate(isEnable){
+
+        let y = $(this.field).position().top + 20
+        let x = $(this.field).position().left + 20
+        burst.tune({x:x,y:y});
+        this.state.status = isEnable
+        $(this.field).attr('src',(this.state.status) ? 'img/moon-on.svg' : 'img/moon-off.svg')
+
+        if(isEnable){
+            $('body').addClass('dark')
+            darkModeAnimation.replay()
+        }else{
+            $('body').removeClass('dark')
+            darkModeAnimation.replay()
+        }
+
     }
 }
 

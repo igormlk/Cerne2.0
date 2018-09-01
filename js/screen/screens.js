@@ -19,7 +19,12 @@ const SignIn = {
         password:'',
         password_confirm:'',
         photo:'img/logocerne-min.png',
-        decks: []
+        decks: [],
+        preferences: {
+            darkMode: {
+                status: false
+            }
+        }
     },
     show(){
         $('#' + this.id).removeClass('hide')
@@ -55,6 +60,7 @@ const SignIn = {
                         Home.addDeck(new Deck(result.id,result.title, result.score, result.category, result.cards, result.cardNumber))
                     });
                 }
+                DarkMode.activate(SignIn.state.preferences.darkMode.status)
                 Screens.navigate(Home)
             });
         }).catch(function(error) {
@@ -116,7 +122,12 @@ const SignUp = {
         password:'',
         password_confirm:'',
         photo:'img/logocerne-min.png',
-        decks:[]
+        decks:[],
+        preferences: {
+            darkMode: {
+                status: false
+            }
+        }
     },
     show(){
         $('#' + this.id).removeClass('hide')
@@ -386,6 +397,7 @@ const Settings = {
         user.name = this.state.name
         user.password = this.state.password
         user.password_confirm = this.state.confirmPass
+        user.preferences.darkMode = DarkMode.state
         firebase.auth().currentUser.updatePassword(this.state.password)
         updateFirebase("/users/" + user.id, user);
         toastShowMessageLongBottom("Alterações feitas com sucesso")
